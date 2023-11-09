@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.springfirst.board.BoardMapper">
+  <select id = "selBoardList"><!-- resultType = "BoardVo" 원래 써야되지만 생략해줌
+  interface의 List selBoardList()랑 연결.-->
+      SELECT iboard, title, writer, created_at as createdAt <!-- as를 주면 이름을 바꾸면서 BoardVo에서 메소드를
+      사용하지 않아도 값을 받아올 수 있다 데이터 베이스와 자바는 구분 기법이 다르기 때문(대소문자 구분이 안되니깐 -->
+      From board
+  </select>
+
+    <select id = "selBoardById">
+        SELECT iboard, title, ctnts, writer,created_at AS createdAt
+        FROM board
+        WHERE iboard = #{iboard}
+    </select>
+
+    <insert id="insBoard">
+        INSERT INTO board
+        SET title = #{title}
+        ,ctnts =#{ctnts}
+        ,writer = #{writer}
+    </insert>
+    
+    <delete id="delBoard">
+        DELETE
+        FROM board
+        where iboard = #{iboard}
+    </delete>
+    
+    <update id="updBoard">
+        UPDATE board
+        set title = #{title},
+        ctnts = #{ctnts},
+        writer = #{writer}
+        where iboard = #{iboard}
+    </update>
+</mapper>
