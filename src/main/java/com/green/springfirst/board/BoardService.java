@@ -21,18 +21,18 @@ public class BoardService {
 
     //@Autowired 멤버필드에 바로 쓰면 직접적으로 주소값을 넣어주기 때문에 사용을 잘 안하는 게 좋다
     private final BoardMapper mapper;
-    // 스프링에서 여기로 주소값 준다
 
-    @Autowired // 가진 주소값을 달라고 하는 주소값 명시는 안됨
+
+    @Autowired//가진 주소값을 달라고 하는 주소값 명시는 안됨
     //타입으로 받을 수 있는 것이 있다면 달라고 하는 애노테이션
     // 이런 종류의 애노테이션이 더 있다
     //생성자를 이용해 주소값을 받는 걸 권장한다.
     public BoardService(BoardMapper mapper){
         this.mapper = mapper;
-    }//생성자가 하나라면 자동으로 넣어주고 여러 개면 애노테이션을 적어줘야 한다
+    }
+    //생성자가 하나라면 자동으로 넣어주고 여러 개면 애노테이션을 적어줘야 한다
     //인식을 해서 주입받는다.
-    // 객체 생성 시 mapper의 주소값을 받을 수 있으면 생성하라
-    //mybatis안의 객체화가 먼저 되고
+
     public List<BoardVo> getBoard(){
         return mapper.selBoardList();
     }
